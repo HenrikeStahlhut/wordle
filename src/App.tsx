@@ -1,5 +1,8 @@
+import Layout from "./Layout";
+import "./index.css";
+
 function App() {
-  return <div>Test</div>;
+  return <Layout />;
 }
 
 export default App;
