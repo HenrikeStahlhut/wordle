@@ -1,9 +1,8 @@
+import { Box } from "@mui/material";
+import WordleGrid from "../components/WordleGrid/WordleGrid";
+
 const Homepage = () => {
-  return (
-    <div>
-      <h1>Homepage</h1>
-    </div>
-  );
+  return <WordleGrid />;
 };
 
 export default Homepage;

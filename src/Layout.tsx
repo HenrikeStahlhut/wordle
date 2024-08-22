@@ -1,5 +1,6 @@
-import Footer from "./components/Footer";
-import Header from "./components/Header";
+import { Box, styled } from "@mui/material";
+import Footer from "./components/general/Footer";
+import Header from "./components/general/Header";
 import Homepage from "./pages/Homepage";
 
 const Layout = () => {
@@ -13,8 +14,10 @@ const Layout = () => {
           flexDirection: "column",
         }}
       >
-        <Header />
-        <Homepage />
+        <Wrapper>
+          <Header />
+          <Homepage />
+        </Wrapper>
       </main>
       <Footer />
     </>
@@ -22,3 +25,10 @@ const Layout = () => {
 };
 
 export default Layout;
+
+const Wrapper = styled(Box)({
+  width: "80%",
+  display: "flex",
+  alignItems: "center",
+  flexDirection: "column",
+});
