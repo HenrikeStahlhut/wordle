@@ -12,5 +12,8 @@ const Footer = () => {
 export default Footer;
 
 const Footercontainer = styled(Box)({
-  background: "black",
+  background: "#eee",
+  bottom: 0,
+  left: 0,
+  right: 0,
 });

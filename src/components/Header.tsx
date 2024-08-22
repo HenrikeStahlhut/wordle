@@ -1,8 +1,10 @@
+import { Box, Typography } from "@mui/material";
+
 const Header = () => {
   return (
-    <header>
-      <h1>Header</h1>
-    </header>
+    <Box margin={"2rem 0"}>
+      <Typography variant="h1">Wordle</Typography>
+    </Box>
   );
 };
 

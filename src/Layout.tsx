@@ -7,7 +7,7 @@ const Layout = () => {
     <>
       <main
         style={{
-          minHeight: "50vh",
+          minHeight: "80vh",
           display: "flex",
           alignItems: "center",
           flexDirection: "column",
@@ -15,8 +15,8 @@ const Layout = () => {
       >
         <Header />
         <Homepage />
-        <Footer />
       </main>
+      <Footer />
     </>
   );
 };
