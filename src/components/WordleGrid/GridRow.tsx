@@ -15,6 +15,7 @@ const GridRow = () => {
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const value = event.target.value;
+
     if (value.length === 1 && index < 4) {
       const nextInput = inputRefs.current[index + 1];
       if (nextInput) {
@@ -57,7 +58,6 @@ const GridRow = () => {
             flexWrap: "nowrap",
           }}
         >
-          {/* Content goes here */}
           <StyledTextField
             inputRef={(el: HTMLInputElement | null) =>
               (inputRefs.current[index] = el)
@@ -66,9 +66,12 @@ const GridRow = () => {
               e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
             ) => handleChange(index, e)}
             inputProps={{ maxLength: 1 }}
-            onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) =>
-              handleKeyDown(index, e)
-            }
+            onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => {
+              if (!/^[a-zA-Z]$/.test(e.key)) {
+                e.preventDefault();
+              }
+              handleKeyDown(index, e);
+            }}
           />
         </Grid>
       ))}
@@ -83,7 +86,7 @@ const StyledTextField = styled(TextField)({
   height: "100%",
   "& .MuiInputBase-root": {
     height: "100%",
-    backgroundColor: "#FFD1DC",
+    backgroundColor: "#a4d2b0",
     transition: "background-color 0.3s",
     "&.Mui-focused": {
       backgroundColor: "#ADD8E6",
