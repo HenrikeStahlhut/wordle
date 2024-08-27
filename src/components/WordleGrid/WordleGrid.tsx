@@ -1,10 +1,9 @@
-import { Box, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import GridRow from "./GridRow";
 
 const WordleGrid = () => {
   return (
-    <Grid container width={"50rem"}>
-      <GridRow />
+    <Grid container width={"50rem"} justifyContent={"center"}>
       <GridRow />
       <GridRow />
       <GridRow />
