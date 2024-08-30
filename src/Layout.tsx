@@ -19,7 +19,7 @@ const Layout = () => {
           <Homepage />
         </Wrapper>
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

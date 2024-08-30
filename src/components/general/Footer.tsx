@@ -1,10 +1,10 @@
 import styled from "@emotion/styled";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 const Footer = () => {
   return (
     <Footercontainer>
-      <p>Footer</p>
+      <Typography>Made by Henny</Typography>
     </Footercontainer>
   );
 };
@@ -12,7 +12,10 @@ const Footer = () => {
 export default Footer;
 
 const Footercontainer = styled(Box)({
-  background: "#eee",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  marginTop: "3rem",
   bottom: 0,
   left: 0,
   right: 0,

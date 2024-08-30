@@ -4,11 +4,9 @@ import GridRow from "./GridRow";
 const WordleGrid = () => {
   return (
     <Grid container width={"50rem"} justifyContent={"center"}>
-      <GridRow />
-      <GridRow />
-      <GridRow />
-      <GridRow />
-      <GridRow />
+      {[...Array(5)].map((_, index) => (
+        <GridRow key={index} isFirstRow={index === 0} />
+      ))}
     </Grid>
   );
 };

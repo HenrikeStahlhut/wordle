@@ -1,14 +1,18 @@
 import { Grid, TextField, styled } from "@mui/material";
 import { useRef, useEffect } from "react";
 
-const GridRow = () => {
+type GridRowProps = {
+  isFirstRow: boolean;
+};
+
+const GridRow = ({ isFirstRow }: GridRowProps) => {
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
   useEffect(() => {
-    if (inputRefs.current[0]) {
+    if (isFirstRow && inputRefs.current[0]) {
       inputRefs.current[0].focus();
     }
-  }, []);
+  }, [isFirstRow]);
 
   const handleChange = (
     index: number,
@@ -66,12 +70,10 @@ const GridRow = () => {
               e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
             ) => handleChange(index, e)}
             inputProps={{ maxLength: 1 }}
-            onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => {
-              if (!/^[a-zA-Z]$/.test(e.key)) {
-                e.preventDefault();
-              }
-              handleKeyDown(index, e);
-            }}
+            onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) =>
+              handleKeyDown(index, e)
+            }
+            autoComplete="off"
           />
         </Grid>
       ))}
