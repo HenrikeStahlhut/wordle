@@ -1,11 +1,7 @@
-import { useState } from "react";
-import { boardDefault } from "../utils/Board";
 import styled from "styled-components";
 import Letter from "./Letter";
 
 const Board = () => {
-  const [board, setBoard] = useState(boardDefault);
-
   return (
     <BoardContainer>
       {[0, 1, 2, 3, 4].map((attemptValue) => (

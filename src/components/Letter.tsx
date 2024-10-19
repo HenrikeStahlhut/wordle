@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { BoardContext } from "../App";
+import { useContext } from "react";
 
 interface LetterProps {
   letterPosition: number;
@@ -6,7 +8,10 @@ interface LetterProps {
 }
 
 const Letter = ({ letterPosition, attemptValue }: LetterProps) => {
-  return <StlyedLetter>Letter</StlyedLetter>;
+  const { board } = useContext(BoardContext);
+  const letter = board[attemptValue][letterPosition];
+
+  return <StlyedLetter>{letter}</StlyedLetter>;
 };
 
 export default Letter;
