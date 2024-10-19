@@ -1,11 +1,14 @@
 import { Grid, TextField, styled } from "@mui/material";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 
 type GridRowProps = {
   isFirstRow: boolean;
+  randomWord: string;
+  onComplete: (word: string) => void;
 };
 
-const GridRow = ({ isFirstRow }: GridRowProps) => {
+const GridRow = ({ isFirstRow, onComplete }: GridRowProps) => {
+  const [letters, setLetters] = useState<string[]>(Array(5).fill(""));
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
   useEffect(() => {
@@ -14,17 +17,20 @@ const GridRow = ({ isFirstRow }: GridRowProps) => {
     }
   }, [isFirstRow]);
 
-  const handleChange = (
-    index: number,
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
-    const value = event.target.value;
+  const handleChange = (index: number, value: string) => {
+    const newLetters = [...letters];
+    newLetters[index] = value.toLowerCase();
+    setLetters(newLetters);
 
     if (value.length === 1 && index < 4) {
       const nextInput = inputRefs.current[index + 1];
       if (nextInput) {
         nextInput.focus();
       }
+    }
+
+    if (newLetters.every((letter) => letter !== "")) {
+      onComplete(newLetters.join(""));
     }
   };
 
@@ -56,9 +62,9 @@ const GridRow = ({ isFirstRow }: GridRowProps) => {
           key={index}
           style={{
             height: "6rem",
-            backgroundColor: "#eee",
+            backgroundColor: "#bdbdbd",
             marginBottom: "1rem",
-            borderRadius: "0.5rem",
+            // borderRadius: "0.5rem",
             flexWrap: "nowrap",
           }}
         >
@@ -66,9 +72,7 @@ const GridRow = ({ isFirstRow }: GridRowProps) => {
             inputRef={(el: HTMLInputElement | null) =>
               (inputRefs.current[index] = el)
             }
-            onChange={(
-              e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-            ) => handleChange(index, e)}
+            onChange={(e) => handleChange(index, e.target.value)}
             inputProps={{ maxLength: 1 }}
             onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) =>
               handleKeyDown(index, e)
@@ -88,11 +92,11 @@ const StyledTextField = styled(TextField)({
   height: "100%",
   "& .MuiInputBase-root": {
     height: "100%",
-    backgroundColor: "#a4d2b0",
+    backgroundColor: "#bdbdbd",
     transition: "background-color 0.3s",
-    "&.Mui-focused": {
-      backgroundColor: "#ADD8E6",
-    },
+    // "&.Mui-focused": {
+    //   backgroundColor: "#ADD8E6",
+    // },
   },
   "& .MuiInputBase-input": {
     height: "100%",
