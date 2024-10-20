@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Key from "./Key";
 
 const Keyboard = () => {
   const keys1 = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"];
@@ -9,17 +10,17 @@ const Keyboard = () => {
     <StyledKeyboard>
       <KeyboardRow1>
         {keys1.map((keys) => {
-          return <div>{keys}</div>;
+          return <Key keyValue={keys} />;
         })}
       </KeyboardRow1>
       <KeyboardRow2>
         {keys2.map((keys) => {
-          return <div>{keys}</div>;
+          return <Key keyValue={keys} />;
         })}
       </KeyboardRow2>
       <KeyboardRow3>
         {keys3.map((keys) => {
-          return <div>{keys}</div>;
+          return <Key keyValue={keys} />;
         })}
       </KeyboardRow3>
     </StyledKeyboard>
