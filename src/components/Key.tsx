@@ -2,16 +2,21 @@ import styled from "styled-components";
 
 interface KeyProps {
   keyValue: any;
+  isBigKey?: boolean;
 }
 
-const Key = ({ keyValue }: KeyProps) => {
-  return <StyledKey>{keyValue}</StyledKey>;
+interface StyledKeyProps {
+  isBigKey?: boolean;
+}
+
+const Key = ({ keyValue, isBigKey }: KeyProps) => {
+  return <StyledKey isBigKey={isBigKey}>{keyValue}</StyledKey>;
 };
 
 export default Key;
 
-const StyledKey = styled.div`
-  width: 50px;
+const StyledKey = styled.div<StyledKeyProps>`
+  width: ${(props) => (props.isBigKey ? "100px" : "50px")};
   height: 70px;
   margin: 5px;
   border-radius: 4px;

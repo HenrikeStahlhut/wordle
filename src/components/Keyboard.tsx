@@ -19,9 +19,11 @@ const Keyboard = () => {
         })}
       </KeyboardRow2>
       <KeyboardRow3>
+        <Key keyValue={"ENTER"} isBigKey={true} />
         {keys3.map((keys) => {
           return <Key keyValue={keys} />;
         })}
+        <Key keyValue={"DELETE"} isBigKey={true} />
       </KeyboardRow3>
     </StyledKeyboard>
   );
