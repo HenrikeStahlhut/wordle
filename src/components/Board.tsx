@@ -6,7 +6,7 @@ const Board = () => {
     <BoardContainer>
       {[0, 1, 2, 3, 4, 5].map((attemptValue) => (
         <Row key={attemptValue}>
-          {[0, 1, 2, 3, 4, 5].map((letterPosition) => (
+          {[0, 1, 2, 3, 4].map((letterPosition) => (
             <Letter
               letterPosition={letterPosition}
               attemptValue={attemptValue}

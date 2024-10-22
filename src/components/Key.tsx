@@ -16,13 +16,23 @@ const Key = ({ keyValue, isBigKey }: KeyProps) => {
     useContext(BoardContext);
 
   const selectLetter = () => {
-    const newBoard = [...board];
-    newBoard[currentAttempt.attempt][currentAttempt.letterPosition] = keyValue;
-    setBoard(newBoard);
-    setCurrentAttempt({
-      ...currentAttempt,
-      letterPosition: currentAttempt.letterPosition + 1,
-    });
+    if (keyValue === "ENTER") {
+      if (currentAttempt.letterPosition !== 5) return;
+      setCurrentAttempt({
+        attempt: currentAttempt.attempt + 1,
+        letterPosition: 0,
+      });
+    } else {
+      if (currentAttempt.letterPosition > 4) return;
+      const newBoard = [...board];
+      newBoard[currentAttempt.attempt][currentAttempt.letterPosition] =
+        keyValue;
+      setBoard(newBoard);
+      setCurrentAttempt({
+        ...currentAttempt,
+        letterPosition: currentAttempt.letterPosition + 1,
+      });
+    }
   };
 
   return (
