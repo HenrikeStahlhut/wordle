@@ -11,6 +11,9 @@ type BoardContextType = {
   setBoard: React.Dispatch<React.SetStateAction<string[][]>>;
   currentAttempt: CurrentAttemptType;
   setCurrentAttempt: React.Dispatch<React.SetStateAction<CurrentAttemptType>>;
+  handleSelectLetter: ({ keyValue }: any) => void;
+  handleDeleteLetter: () => void;
+  handleEnter: () => void;
 };
 
 type CurrentAttemptType = {
@@ -23,6 +26,9 @@ export const BoardContext = createContext<BoardContextType>({
   setBoard: () => {},
   currentAttempt: { attempt: 0, letterPosition: 0 },
   setCurrentAttempt: () => {},
+  handleSelectLetter: () => {},
+  handleDeleteLetter: () => {},
+  handleEnter: () => {},
 });
 
 function App() {
@@ -31,10 +37,49 @@ function App() {
     attempt: 0,
     letterPosition: 0,
   });
+
+  const handleSelectLetter = ({ keyValue }: any) => {
+    if (currentAttempt.letterPosition > 4) return;
+    const newBoard = [...board];
+    newBoard[currentAttempt.attempt][currentAttempt.letterPosition] = keyValue;
+    setBoard(newBoard);
+    setCurrentAttempt({
+      ...currentAttempt,
+      letterPosition: currentAttempt.letterPosition + 1,
+    });
+  };
+
+  const handleDeleteLetter = () => {
+    if (currentAttempt.letterPosition === 0) return;
+    const newBoard = [...board];
+    newBoard[currentAttempt.attempt][currentAttempt.letterPosition - 1] = "";
+    setBoard(newBoard);
+    setCurrentAttempt({
+      ...currentAttempt,
+      letterPosition: currentAttempt.letterPosition - 1,
+    });
+  };
+
+  const handleEnter = () => {
+    if (currentAttempt.letterPosition !== 5) return;
+    setCurrentAttempt({
+      attempt: currentAttempt.attempt + 1,
+      letterPosition: 0,
+    });
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <BoardContext.Provider
-        value={{ board, setBoard, currentAttempt, setCurrentAttempt }}
+        value={{
+          board,
+          setBoard,
+          currentAttempt,
+          setCurrentAttempt,
+          handleSelectLetter,
+          handleDeleteLetter,
+          handleEnter,
+        }}
       >
         <Layout />
       </BoardContext.Provider>
