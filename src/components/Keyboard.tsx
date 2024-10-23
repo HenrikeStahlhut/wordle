@@ -19,7 +19,7 @@ const Keyboard = () => {
         handleDeleteLetter();
       } else {
         [...keys1, ...keys2, ...keys3].forEach((key) => {
-          if (e.key === key) {
+          if (e.key.toLowerCase() === key.toLocaleLowerCase()) {
             handleSelectLetter({ keyValue: key });
           }
         });
