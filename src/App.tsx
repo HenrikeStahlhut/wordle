@@ -2,8 +2,8 @@ import Layout from "./Layout";
 import "./index.css";
 import theme from "./styles/styleTheme";
 import { ThemeProvider } from "@emotion/react";
-import { useState } from "react";
-import { boardDefault } from "./utils/Board";
+import { useEffect, useState } from "react";
+import { boardDefault, generateWordSet } from "./utils/Board";
 import { createContext } from "react";
 
 type BoardContextType = {
@@ -39,8 +39,16 @@ function App() {
     attempt: 0,
     letterPosition: 0,
   });
+  const [wordSet, setWordSet] = useState<Set<string>>(new Set());
 
   const correctWord = "HELLO";
+
+  useEffect(() => {
+    generateWordSet().then((words) => {
+      console.log("wordSet", words);
+      setWordSet(words.wordSet);
+    });
+  }, []);
 
   const handleSelectLetter = ({ keyValue }: any) => {
     if (currentAttempt.letterPosition > 4) return;
