@@ -14,6 +14,7 @@ type BoardContextType = {
   handleSelectLetter: ({ keyValue }: any) => void;
   handleDeleteLetter: () => void;
   handleEnter: () => void;
+  correctWord: string;
 };
 
 type CurrentAttemptType = {
@@ -29,6 +30,7 @@ export const BoardContext = createContext<BoardContextType>({
   handleSelectLetter: () => {},
   handleDeleteLetter: () => {},
   handleEnter: () => {},
+  correctWord: "",
 });
 
 function App() {
@@ -37,6 +39,8 @@ function App() {
     attempt: 0,
     letterPosition: 0,
   });
+
+  const correctWord = "HELLO";
 
   const handleSelectLetter = ({ keyValue }: any) => {
     if (currentAttempt.letterPosition > 4) return;
@@ -79,6 +83,7 @@ function App() {
           handleSelectLetter,
           handleDeleteLetter,
           handleEnter,
+          correctWord,
         }}
       >
         <Layout />
