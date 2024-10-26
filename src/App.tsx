@@ -74,10 +74,19 @@ function App() {
 
   const handleEnter = () => {
     if (currentAttempt.letterPosition !== 5) return;
-    setCurrentAttempt({
-      attempt: currentAttempt.attempt + 1,
-      letterPosition: 0,
-    });
+    let currentWord = "";
+    for (let i = 0; i < 5; i++) {
+      currentWord += board[currentAttempt.attempt][i]; //create word from all attempts to compare to wordSet
+    }
+
+    if (wordSet.has(currentWord.toLowerCase())) {
+      setCurrentAttempt({
+        attempt: currentAttempt.attempt + 1,
+        letterPosition: 0,
+      });
+    } else {
+      alert("Word not in wordbank");
+    }
   };
 
   return (
