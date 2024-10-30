@@ -8,8 +8,12 @@ const Keyboard = () => {
   const keys2 = ["A", "S", "D", "F", "G", "H", "J", "K", "L"];
   const keys3 = ["Z", "X", "C", "V", "B", "N", "M"];
 
-  const { handleSelectLetter, handleDeleteLetter, handleEnter } =
-    useContext(BoardContext);
+  const {
+    handleSelectLetter,
+    handleDeleteLetter,
+    handleEnter,
+    disabledLetters,
+  } = useContext(BoardContext);
 
   const handleKeyboard = useCallback(
     (e: any) => {
@@ -35,22 +39,32 @@ const Keyboard = () => {
     };
   }, [handleKeyboard]);
 
+  console.log("disabledLetters in Keyboard.tsx", disabledLetters);
+
+  console.log("keys", keys1, keys2, keys3);
+
   return (
     <StyledKeyboard>
       <KeyboardRow1>
         {keys1.map((keys) => {
-          return <Key keyValue={keys} />;
+          return (
+            <Key keyValue={keys} disabled={disabledLetters.includes(keys)} />
+          );
         })}
       </KeyboardRow1>
       <KeyboardRow2>
         {keys2.map((keys) => {
-          return <Key keyValue={keys} />;
+          return (
+            <Key keyValue={keys} disabled={disabledLetters.includes(keys)} />
+          );
         })}
       </KeyboardRow2>
       <KeyboardRow3>
         <Key keyValue={"ENTER"} isBigKey={true} />
         {keys3.map((keys) => {
-          return <Key keyValue={keys} />;
+          return (
+            <Key keyValue={keys} disabled={disabledLetters.includes(keys)} />
+          );
         })}
         <Key keyValue={"DELETE"} isBigKey={true} />
       </KeyboardRow3>
