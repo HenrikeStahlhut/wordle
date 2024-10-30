@@ -5,13 +5,15 @@ import { BoardContext } from "../App";
 interface KeyProps {
   keyValue: any;
   isBigKey?: boolean;
+  disabled?: boolean;
 }
 
 interface StyledKeyProps {
   isBigKey?: boolean;
+  disabled?: boolean;
 }
 
-const Key = ({ keyValue, isBigKey }: KeyProps) => {
+const Key = ({ keyValue, isBigKey, disabled }: KeyProps) => {
   const { handleSelectLetter, handleDeleteLetter, handleEnter } =
     useContext(BoardContext);
 
@@ -25,8 +27,10 @@ const Key = ({ keyValue, isBigKey }: KeyProps) => {
     }
   };
 
+  // console.log("disabled in Key.tsx", disabled);
+
   return (
-    <StyledKey isBigKey={isBigKey} onClick={selectLetter}>
+    <StyledKey isBigKey={isBigKey} disabled={disabled} onClick={selectLetter}>
       {keyValue}
     </StyledKey>
   );
@@ -42,8 +46,8 @@ const StyledKey = styled.div<StyledKeyProps>`
   display: grid;
   place-items: center;
   font-size: 20px;
-  background-color: grey;
-  color: white;
+  background-color: ${(props) => (props.disabled ? "#ff4848" : "#a5a5a5")};
+  color: #fff;
   font-family: Arial, Helvetica, sans-serif;
   cursor: pointer;
 `;

@@ -15,6 +15,8 @@ type BoardContextType = {
   handleDeleteLetter: () => void;
   handleEnter: () => void;
   correctWord: string;
+  disabledLetters: string[];
+  setDisabledLetters: React.Dispatch<React.SetStateAction<string[]>>;
 };
 
 type CurrentAttemptType = {
@@ -31,6 +33,8 @@ export const BoardContext = createContext<BoardContextType>({
   handleDeleteLetter: () => {},
   handleEnter: () => {},
   correctWord: "",
+  disabledLetters: [],
+  setDisabledLetters: () => {},
 });
 
 function App() {
@@ -40,6 +44,7 @@ function App() {
     letterPosition: 0,
   });
   const [wordSet, setWordSet] = useState<Set<string>>(new Set());
+  const [disabledLetters, setDisabledLetters] = useState<string[]>([]);
 
   const correctWord = "HELLO";
 
@@ -87,6 +92,10 @@ function App() {
     } else {
       alert("Word not in wordbank");
     }
+
+    if (currentWord === correctWord) {
+      alert("Word found!");
+    }
   };
 
   return (
@@ -101,6 +110,8 @@ function App() {
           handleDeleteLetter,
           handleEnter,
           correctWord,
+          disabledLetters,
+          setDisabledLetters,
         }}
       >
         <Layout />

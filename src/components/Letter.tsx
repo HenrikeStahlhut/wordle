@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { BoardContext } from "../App";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 interface LetterProps {
   letterPosition: number;
@@ -12,14 +12,29 @@ interface StyledLetterProps {
 }
 
 const Letter = ({ letterPosition, attemptValue }: LetterProps) => {
-  const { board, correctWord, currentAttempt } = useContext(BoardContext);
+  const {
+    board,
+    correctWord,
+    currentAttempt,
+    disabledLetters,
+    setDisabledLetters,
+  } = useContext(BoardContext);
   const letter = board[attemptValue][letterPosition];
 
   const correct = correctWord[letterPosition] === letter;
   const almost = !correct && letter !== "" && correctWord.includes(letter);
+
   const letterState =
     currentAttempt.attempt > attemptValue &&
     (correct ? "correct" : almost ? "almost" : "default");
+
+  useEffect(() => {
+    if (letter !== "" && !correct && !almost) {
+      //setDisabledLetters([...disabledLetters, letter]);
+      setDisabledLetters((prev) => [...prev, letter]);
+      console.log("disabledLetters", disabledLetters);
+    }
+  }, [currentAttempt.attempt]);
 
   return <StlyedLetter color={letterState}>{letter}</StlyedLetter>;
 };
