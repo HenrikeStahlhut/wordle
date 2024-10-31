@@ -27,8 +27,6 @@ const Key = ({ keyValue, isBigKey, disabled }: KeyProps) => {
     }
   };
 
-  // console.log("disabled in Key.tsx", disabled);
-
   return (
     <StyledKey isBigKey={isBigKey} disabled={disabled} onClick={selectLetter}>
       {keyValue}
@@ -45,8 +43,9 @@ const StyledKey = styled.div<StyledKeyProps>`
   border-radius: 4px;
   display: grid;
   place-items: center;
+  font-weight: bold;
   font-size: 20px;
-  background-color: ${(props) => (props.disabled ? "#ff4848" : "#a5a5a5")};
+  background-color: ${(props) => (props.disabled ? "#6f6f6f" : "#a5a5a5")};
   color: #fff;
   font-family: Arial, Helvetica, sans-serif;
   cursor: pointer;
