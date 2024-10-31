@@ -56,7 +56,6 @@ function App() {
 
   useEffect(() => {
     generateWordSet().then((words) => {
-      console.log("wordSet", words);
       setWordSet(words.wordSet);
     });
   }, []);

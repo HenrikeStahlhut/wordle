@@ -39,10 +39,6 @@ const Keyboard = () => {
     };
   }, [handleKeyboard]);
 
-  console.log("disabledLetters in Keyboard.tsx", disabledLetters);
-
-  console.log("keys", keys1, keys2, keys3);
-
   return (
     <StyledKeyboard>
       <KeyboardRow1>

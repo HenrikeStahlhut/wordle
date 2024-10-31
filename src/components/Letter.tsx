@@ -31,7 +31,6 @@ const Letter = ({ letterPosition, attemptValue }: LetterProps) => {
   useEffect(() => {
     if (letter !== "" && !correct && !almost) {
       setDisabledLetters((prev) => [...prev, letter]);
-      console.log("disabledLetters", disabledLetters);
     }
   }, [currentAttempt.attempt]);
 
