@@ -34,7 +34,7 @@ const Letter = ({ letterPosition, attemptValue }: LetterProps) => {
     }
   }, [currentAttempt.attempt]);
 
-  return <StlyedLetter color={letterState}>{letter}</StlyedLetter>;
+  return <StlyedLetter color={letterState.toString()}>{letter}</StlyedLetter>;
 };
 
 export default Letter;

@@ -42,24 +42,36 @@ const Keyboard = () => {
   return (
     <StyledKeyboard>
       <KeyboardRow1>
-        {keys1.map((keys) => {
+        {keys1.map((keys, index) => {
           return (
-            <Key keyValue={keys} disabled={disabledLetters.includes(keys)} />
+            <Key
+              keyValue={keys}
+              disabled={disabledLetters.includes(keys)}
+              key={index}
+            />
           );
         })}
       </KeyboardRow1>
       <KeyboardRow2>
-        {keys2.map((keys) => {
+        {keys2.map((keys, index) => {
           return (
-            <Key keyValue={keys} disabled={disabledLetters.includes(keys)} />
+            <Key
+              keyValue={keys}
+              disabled={disabledLetters.includes(keys)}
+              key={index}
+            />
           );
         })}
       </KeyboardRow2>
       <KeyboardRow3>
         <Key keyValue={"ENTER"} isBigKey={true} />
-        {keys3.map((keys) => {
+        {keys3.map((keys, index) => {
           return (
-            <Key keyValue={keys} disabled={disabledLetters.includes(keys)} />
+            <Key
+              keyValue={keys}
+              disabled={disabledLetters.includes(keys)}
+              key={index}
+            />
           );
         })}
         <Key keyValue={"DELETE"} isBigKey={true} />
@@ -73,7 +85,7 @@ export default Keyboard;
 const StyledKeyboard = styled.div`
   width: 700px;
   height: 300px;
-  margin-top: 60px;
+  margin-top: 15px;
 `;
 
 const KeyboardRow1 = styled.div`
@@ -82,7 +94,6 @@ const KeyboardRow1 = styled.div`
   flex-direction: row;
   display: flex;
   justify-content: center;
-  margin: 5px;
 `;
 
 const KeyboardRow2 = styled.div`
@@ -90,7 +101,6 @@ const KeyboardRow2 = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin: 5px;
 `;
 
 const KeyboardRow3 = styled.div`
@@ -98,5 +108,4 @@ const KeyboardRow3 = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin: 5px;
 `;
