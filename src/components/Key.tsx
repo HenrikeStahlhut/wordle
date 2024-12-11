@@ -46,7 +46,7 @@ const StyledKey = styled.div<StyledKeyProps>`
   place-items: center;
   font-weight: bold;
   font-size: 20px;
-  background-color: ${(props) => (props.disabled ? "#6f6f6f" : "#bbbbbb")};
+  background-color: ${(props) => (props.disabled ? "#787C7E" : "#D4D6DA")};
   color: ${(props) => (props.disabled ? "#fff" : "#282828")};
   font-family: Arial, Helvetica, sans-serif;
   cursor: pointer;
