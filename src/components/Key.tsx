@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import styled from "styled-components";
 import { BoardContext } from "../App";
+import BackspaceOutlinedIcon from "@mui/icons-material/BackspaceOutlined";
 
 interface KeyProps {
   keyValue: any;
@@ -27,11 +28,9 @@ const Key = ({ keyValue, isBigKey, disabled }: KeyProps) => {
     }
   };
 
-  // console.log("disabled in Key.tsx", disabled);
-
   return (
     <StyledKey isBigKey={isBigKey} disabled={disabled} onClick={selectLetter}>
-      {keyValue}
+      {keyValue === "DELETE" ? <BackspaceOutlinedIcon /> : keyValue}
     </StyledKey>
   );
 };
@@ -45,9 +44,10 @@ const StyledKey = styled.div<StyledKeyProps>`
   border-radius: 4px;
   display: grid;
   place-items: center;
+  font-weight: bold;
   font-size: 20px;
-  background-color: ${(props) => (props.disabled ? "#ff4848" : "#a5a5a5")};
-  color: #fff;
+  background-color: ${(props) => (props.disabled ? "#787C7E" : "#D4D6DA")};
+  color: ${(props) => (props.disabled ? "#fff" : "#282828")};
   font-family: Arial, Helvetica, sans-serif;
   cursor: pointer;
 `;

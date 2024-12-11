@@ -30,13 +30,11 @@ const Letter = ({ letterPosition, attemptValue }: LetterProps) => {
 
   useEffect(() => {
     if (letter !== "" && !correct && !almost) {
-      //setDisabledLetters([...disabledLetters, letter]);
       setDisabledLetters((prev) => [...prev, letter]);
-      console.log("disabledLetters", disabledLetters);
     }
   }, [currentAttempt.attempt]);
 
-  return <StlyedLetter color={letterState}>{letter}</StlyedLetter>;
+  return <StlyedLetter color={letterState.toString()}>{letter}</StlyedLetter>;
 };
 
 export default Letter;
@@ -44,7 +42,30 @@ export default Letter;
 const StlyedLetter = styled.div<StyledLetterProps>`
   flex: 33%;
   height: 100%;
-  border: 2px solid #d8d8d8;
+  color: ${(props) => {
+    switch (props.color) {
+      case "correct":
+        return "#fff";
+      case "almost":
+        return "#fff";
+      case "default":
+        return "#fff";
+      default:
+        return "#000";
+    }
+  }};
+  border: ${(props) => {
+    switch (props.color) {
+      case "correct":
+        return "none";
+      case "almost":
+        return "none";
+      case "default":
+        return "none";
+      default:
+        return "2px solid #d8d8d8";
+    }
+  }};
   margin: 5px;
   display: grid;
   place-items: center;
@@ -53,13 +74,39 @@ const StlyedLetter = styled.div<StyledLetterProps>`
   background-color: ${(props) => {
     switch (props.color) {
       case "correct":
-        return "#6aaa64";
+        return "#66A461";
       case "almost":
-        return "#c9b458";
+        return "#E0C36C";
       case "default":
-        return "#c0c0c0";
+        return "#666666";
       default:
         return "white";
     }
   }};
+  animation: ${(props) => {
+    switch (props.color) {
+      case "correct":
+        return "flip 400ms ease forwards";
+      case "almost":
+        return "flip 400ms ease forwards";
+      case "default":
+        return "flip 400ms ease forwards";
+      default:
+        return "none";
+    }
+  }};
+
+  @keyframes flip {
+    0% {
+      transform: scaleY(1);
+    }
+
+    50% {
+      transform: scaleY(0);
+    }
+
+    100% {
+      transform: scaleY(1);
+    }
+  }
 `;

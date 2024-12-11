@@ -17,6 +17,8 @@ type BoardContextType = {
   correctWord: string;
   disabledLetters: string[];
   setDisabledLetters: React.Dispatch<React.SetStateAction<string[]>>;
+  notInWordBank?: boolean;
+  wordFound?: boolean;
 };
 
 type CurrentAttemptType = {
@@ -35,6 +37,8 @@ export const BoardContext = createContext<BoardContextType>({
   correctWord: "",
   disabledLetters: [],
   setDisabledLetters: () => {},
+  notInWordBank: false,
+  wordFound: false,
 });
 
 function App() {
@@ -45,18 +49,22 @@ function App() {
   });
   const [wordSet, setWordSet] = useState<Set<string>>(new Set());
   const [disabledLetters, setDisabledLetters] = useState<string[]>([]);
+  const [notInWordBank, setNotInWordBank] = useState(false);
+  const [wordFound, setWordFound] = useState(false);
 
   const correctWord = "HELLO";
 
   useEffect(() => {
     generateWordSet().then((words) => {
-      console.log("wordSet", words);
       setWordSet(words.wordSet);
     });
   }, []);
 
   const handleSelectLetter = ({ keyValue }: any) => {
     if (currentAttempt.letterPosition > 4) return;
+    if (notInWordBank && currentAttempt.letterPosition === 0) {
+      setNotInWordBank(false);
+    }
     const newBoard = [...board];
     newBoard[currentAttempt.attempt][currentAttempt.letterPosition] = keyValue;
     setBoard(newBoard);
@@ -90,11 +98,11 @@ function App() {
         letterPosition: 0,
       });
     } else {
-      alert("Word not in wordbank");
+      setNotInWordBank(true);
     }
 
     if (currentWord === correctWord) {
-      alert("Word found!");
+      setWordFound(true);
     }
   };
 
@@ -112,6 +120,8 @@ function App() {
           correctWord,
           disabledLetters,
           setDisabledLetters,
+          notInWordBank,
+          wordFound,
         }}
       >
         <Layout />
