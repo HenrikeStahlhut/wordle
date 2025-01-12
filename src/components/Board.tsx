@@ -29,41 +29,6 @@ const Board = () => {
 
         <Popup message="Word Found!" show={wordFound} />
         <Popup message="Not in word bank" show={notInWordBank} />
-
-        {/* {wordFound && (
-          <Box
-            sx={{
-              padding: "5px 10px",
-              borderRadius: "3px",
-              bgcolor: "#000",
-              margin: "20px 0 0 0",
-              width: "fit-content",
-              position: "absolute",
-              right: "50%",
-              transform: "translate(50%, 0)",
-              top: "2.5rem",
-            }}
-          >
-            <Typography sx={{ color: "#fff" }}>Word Found!</Typography>
-          </Box>
-        )}
-        {notInWordBank && (
-          <Box
-            sx={{
-              padding: "5px 10px",
-              borderRadius: "3px",
-              bgcolor: "#000",
-              margin: "20px 0 0 0",
-              width: "fit-content",
-              position: "absolute",
-              right: "50%",
-              transform: "translate(50%, 0)",
-              top: "2.5rem",
-            }}
-          >
-            <Typography sx={{ color: "#fff" }}>Not in word bank</Typography>
-          </Box>
-        )} */}
       </Box>
     </>
   );
