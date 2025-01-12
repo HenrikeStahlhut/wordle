@@ -1,4 +1,16 @@
-# Getting Started with Create React App
+# Wordle
+A clone of the famous and beloved Wordle game by the New York Times
+
+## How to play
+Try to guess the correct word in 6 tries.\
+Letters that are in the correct position and are included in the word turn green, letters that are included but not in the right position turn yellow.
+Incorrect letters turn grey.
+
+<img width="752" alt="Screenshot 2025-01-12 at 15 01 57" src="https://github.com/user-attachments/assets/6dec1b7e-dcbc-43d8-9f8a-a963a4c7f1e2" />
+
+
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
