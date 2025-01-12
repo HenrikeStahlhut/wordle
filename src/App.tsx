@@ -5,6 +5,13 @@ import { ThemeProvider } from "@emotion/react";
 import { useEffect, useState } from "react";
 import { boardDefault, generateWordSet } from "./utils/Board";
 import { createContext } from "react";
+import common_five_letter_words from "./utils/common_five_letter_words.json";
+
+const getRandomWord = (): string => {
+  const words = common_five_letter_words;
+  const randomIndex = Math.floor(Math.random() * words.length);
+  return words[randomIndex].toUpperCase();
+};
 
 type BoardContextType = {
   board: string[][];
@@ -51,13 +58,13 @@ function App() {
   const [disabledLetters, setDisabledLetters] = useState<string[]>([]);
   const [notInWordBank, setNotInWordBank] = useState(false);
   const [wordFound, setWordFound] = useState(false);
-
-  const correctWord = "HELLO";
+  const [correctWord, setCorrectWord] = useState<string>("");
 
   useEffect(() => {
     generateWordSet().then((words) => {
       setWordSet(words.wordSet);
     });
+    setCorrectWord(getRandomWord());
   }, []);
 
   const handleSelectLetter = ({ keyValue }: any) => {
