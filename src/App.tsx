@@ -6,12 +6,7 @@ import { useEffect, useState } from "react";
 import { boardDefault, generateWordSet } from "./utils/Board";
 import { createContext } from "react";
 import common_five_letter_words from "./utils/common_five_letter_words.json";
-
-const getRandomWord = (): string => {
-  const words = common_five_letter_words;
-  const randomIndex = Math.floor(Math.random() * words.length);
-  return words[randomIndex].toUpperCase();
-};
+import { useLocalStorage } from "./hooks/useLocalStorage";
 
 type BoardContextType = {
   board: string[][];
@@ -59,6 +54,13 @@ function App() {
   const [notInWordBank, setNotInWordBank] = useState(false);
   const [wordFound, setWordFound] = useState(false);
   const [correctWord, setCorrectWord] = useState<string>("");
+  const { setItem, getItem } = useLocalStorage("wins");
+
+  const getRandomWord = (): string => {
+    const words = common_five_letter_words;
+    const randomIndex = Math.floor(Math.random() * words.length);
+    return words[randomIndex].toUpperCase();
+  };
 
   useEffect(() => {
     generateWordSet().then((words) => {
@@ -66,6 +68,10 @@ function App() {
     });
     setCorrectWord(getRandomWord());
   }, []);
+
+  useEffect(() => {
+    console.log(correctWord);
+  }, [correctWord]);
 
   const handleSelectLetter = ({ keyValue }: any) => {
     if (currentAttempt.letterPosition > 4) return;
@@ -110,6 +116,8 @@ function App() {
 
     if (currentWord === correctWord) {
       setWordFound(true);
+      const currentWins = Number(getItem() || 0);
+      setItem((currentWins + 1).toString());
     }
   };
 
