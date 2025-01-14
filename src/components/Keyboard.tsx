@@ -84,8 +84,7 @@ export default Keyboard;
 
 const StyledKeyboard = styled.div`
   width: 700px;
-  height: 300px;
-  margin-top: 15px;
+  margin-top: 25px;
 `;
 
 const KeyboardRow1 = styled.div`

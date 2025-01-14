@@ -1,9 +1,7 @@
 import { Box, styled } from "@mui/material";
-import Footer from "./components/general/Footer";
-import Header from "./components/general/Header";
-import Homepage from "./pages/Homepage";
 import Board from "./components/Board";
 import Keyboard from "./components/Keyboard";
+import Wins from "./components/Wins";
 
 const Layout = () => {
   return (
@@ -17,13 +15,15 @@ const Layout = () => {
         }}
       >
         <Wrapper>
-          {/* <Header />
-          <Homepage /> */}
-          <Board />
-          <Keyboard />
+          <Box display={"flex"} flexDirection={"row"} alignItems={"center"}>
+            <div>
+              <Board />
+              <Keyboard />
+            </div>
+            <Wins />
+          </Box>
         </Wrapper>
       </main>
-      {/* <Footer /> */}
     </>
   );
 };
