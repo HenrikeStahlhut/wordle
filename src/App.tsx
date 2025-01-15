@@ -7,6 +7,8 @@ import { boardDefault, generateWordSet } from "./utils/Board";
 import { createContext } from "react";
 import common_five_letter_words from "./utils/common_five_letter_words.json";
 import { useLocalStorage } from "./hooks/useLocalStorage";
+import { Routes, Route } from "react-router-dom";
+import Homepage from "./pages/Homepage";
 
 type BoardContextType = {
   board: string[][];
@@ -139,7 +141,11 @@ function App() {
           wordFound,
         }}
       >
-        <Layout />
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Homepage />} />
+          </Route>
+        </Routes>
       </BoardContext.Provider>
     </ThemeProvider>
   );
