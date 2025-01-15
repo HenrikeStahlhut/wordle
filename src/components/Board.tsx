@@ -1,14 +1,12 @@
 import styled from "styled-components";
 import Letter from "./Letter";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { BoardContext } from "../App";
 import { Box, Typography } from "@mui/material";
 import Popup from "./Popup";
-import { useLocalStorage } from "../hooks/useLocalStorage";
 
 const Board = () => {
   const { wordFound, notInWordBank } = useContext(BoardContext);
-  const { setItem, getItem } = useLocalStorage("wins");
 
   return (
     <>

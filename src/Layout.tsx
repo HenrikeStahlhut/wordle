@@ -1,8 +1,4 @@
 import { Box, styled } from "@mui/material";
-import Board from "./components/Board";
-import Keyboard from "./components/Keyboard";
-import Wins from "./components/Wins";
-import Homepage from "./pages/Homepage";
 import { Outlet } from "react-router-dom";
 
 const Layout = () => {
@@ -17,13 +13,6 @@ const Layout = () => {
         }}
       >
         <Wrapper>
-          {/* <Box display={"flex"} flexDirection={"row"} alignItems={"center"}>
-            <div>
-              <Board />
-              <Keyboard />
-            </div>
-            <Wins />
-          </Box> */}
           <Outlet />
         </Wrapper>
       </main>
