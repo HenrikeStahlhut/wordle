@@ -9,6 +9,7 @@ import common_five_letter_words from "./utils/common_five_letter_words.json";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import { Routes, Route } from "react-router-dom";
 import Homepage from "./pages/Homepage";
+import WinHistory from "./pages/WinHistory";
 
 type BoardContextType = {
   board: string[][];
@@ -118,8 +119,12 @@ function App() {
 
     if (currentWord === correctWord) {
       setWordFound(true);
-      const currentWins = Number(getItem() || 0);
-      setItem((currentWins + 1).toString());
+      const currentData = getItem();
+      const totalWins = (currentData?.totalWins || 0) + 1;
+      setItem({
+        totalWins,
+        wonToday: true,
+      });
     }
   };
 
@@ -144,6 +149,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Homepage />} />
+            <Route path="/win-history" element={<WinHistory />} />
           </Route>
         </Routes>
       </BoardContext.Provider>

@@ -3,6 +3,7 @@ import { useLocalStorage } from "../hooks/useLocalStorage";
 
 const Wins = () => {
   const { getItem } = useLocalStorage("wins");
+  const winData = getItem();
 
   return (
     <Box
@@ -15,7 +16,7 @@ const Wins = () => {
         Wins
       </Typography>
       <Typography fontSize={"25px"} fontWeight={"bold"}>
-        {getItem()}
+        {winData?.totalWins || 0}
       </Typography>
     </Box>
   );
