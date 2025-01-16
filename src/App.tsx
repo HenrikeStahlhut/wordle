@@ -7,6 +7,9 @@ import { boardDefault, generateWordSet } from "./utils/Board";
 import { createContext } from "react";
 import common_five_letter_words from "./utils/common_five_letter_words.json";
 import { useLocalStorage } from "./hooks/useLocalStorage";
+import { Routes, Route } from "react-router-dom";
+import Homepage from "./pages/Homepage";
+import WinHistory from "./pages/WinHistory";
 
 type BoardContextType = {
   board: string[][];
@@ -54,7 +57,7 @@ function App() {
   const [notInWordBank, setNotInWordBank] = useState(false);
   const [wordFound, setWordFound] = useState(false);
   const [correctWord, setCorrectWord] = useState<string>("");
-  const { setItem, getItem } = useLocalStorage("wins");
+  const { getItem, setItem } = useLocalStorage("wins");
 
   const getRandomWord = (): string => {
     const words = common_five_letter_words;
@@ -116,8 +119,15 @@ function App() {
 
     if (currentWord === correctWord) {
       setWordFound(true);
-      const currentWins = Number(getItem() || 0);
-      setItem((currentWins + 1).toString());
+      const storedWinData = getItem();
+      const totalWins =
+        storedWinData.length > 0
+          ? storedWinData[storedWinData.length - 1].totalWins
+          : 0;
+      setItem({
+        totalWins,
+        wonToday: true,
+      });
     }
   };
 
@@ -139,7 +149,12 @@ function App() {
           wordFound,
         }}
       >
-        <Layout />
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Homepage />} />
+            <Route path="/win-history" element={<WinHistory />} />
+          </Route>
+        </Routes>
       </BoardContext.Provider>
     </ThemeProvider>
   );
