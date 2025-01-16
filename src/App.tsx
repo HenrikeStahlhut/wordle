@@ -57,7 +57,7 @@ function App() {
   const [notInWordBank, setNotInWordBank] = useState(false);
   const [wordFound, setWordFound] = useState(false);
   const [correctWord, setCorrectWord] = useState<string>("");
-  const { setItem, getItem } = useLocalStorage("wins");
+  const { getItem, setItem } = useLocalStorage("wins");
 
   const getRandomWord = (): string => {
     const words = common_five_letter_words;
@@ -119,8 +119,11 @@ function App() {
 
     if (currentWord === correctWord) {
       setWordFound(true);
-      const currentData = getItem();
-      const totalWins = (currentData?.totalWins || 0) + 1;
+      const storedWinData = getItem();
+      const totalWins =
+        storedWinData.length > 0
+          ? storedWinData[storedWinData.length - 1].totalWins
+          : 0;
       setItem({
         totalWins,
         wonToday: true,
